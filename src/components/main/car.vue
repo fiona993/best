@@ -170,6 +170,7 @@ export default {
       });
     }
   },
+  
   computed: {
     total() {
       //监听选中单个的商品
