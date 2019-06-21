@@ -34,12 +34,20 @@ export default new Router({
           component: resolve => require(['@/components/main/car'], resolve)
         },
         {
-          path: 'my',
-          name: 'my',
+          path: 'login',
+          name: 'login',
           meta: {
-            title: '我的'
+            title: '登录页面'
           },
-          component: resolve => require(['@/components/main/my'], resolve)
+          component: resolve => require(['@/components/main/login'], resolve)
+        },
+        {
+          path: 'register',
+          name: 'register',
+          meta: {
+            title: '登录页面'
+          },
+          component: resolve => require(['@/components/main/register'], resolve)
         },
         {
           path: 'xiangqing',

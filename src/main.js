@@ -22,7 +22,6 @@ Vue.use(VueLazyload, {
   loading: require('@/assets/laz.jpg')
 })
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

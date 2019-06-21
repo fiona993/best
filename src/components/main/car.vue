@@ -1,14 +1,12 @@
 <template>
   <div>
-   
     <!-- 无商品时显示 -->
     <div id="kong" v-if="$store.state.shopCar.num==0">购物车是空的哦~</div>
-
     <!-- 有商品显示  商品列表 -->
     <div id="buy">
       <ul>
         <li v-for="(item,index) in shopCar" :key="index">
-          <input type="checkbox" v-model="item.bool" @click="show">
+          <img @click="show(index)" :src="item.bool?'https://res.bestcake.com/m-images/order/mw_firm_duihao_1.jpg':'https://res.bestcake.com/m-images/order/mw_firm_duihao_2.jpg'" alt="">
           <img :src="item.ImgUrl">
           <div>
             <p>{{item.Name}}</p>
@@ -65,7 +63,7 @@
     <!-- 结算 -->
     <div id="posa">
       <div class="zuo">
-        <input type="checkbox" v-model="beaool" @click="all">全选
+        <img @click="all" :src="beaool?'https://res.bestcake.com/m-images/order/mw_firm_duihao_1.jpg':'https://res.bestcake.com/m-images/order/mw_firm_duihao_2.jpg'" alt="">
         <i @click="qing">清空</i>
       </div>
       <div class="you">
@@ -95,7 +93,8 @@ export default {
       shopCar: [], //所有商品数据
       value: [],
       list: [],
-      beaool: false
+      url:"",
+      beaool: false,
     };
   },
   mounted() {
@@ -111,9 +110,10 @@ export default {
       });
       this.shopCar = shopCar;
     },
-    show() {
+    show(index) {
       setTimeout(() => {
         var list = [];
+        this.shopCar[index].bool=!this.shopCar[index].bool;
         this.shopCar.forEach(item => {
           if (item.bool) {
             list.push(item);
@@ -124,19 +124,23 @@ export default {
     },
     all() {
       //点击全选反选
+      var beaool=!this.beaool;
       if (this.beaool) {
         setTimeout(() => {
           this.shopCar.forEach(item => {
             item.bool = false;
+            this.list=[]
           });
         }, 80);
       } else {
         setTimeout(() => {
           this.shopCar.forEach(item => {
             item.bool = true;
+            this.list.push(item)
           });
         }, 80);
       }
+      this.beaool=beaool
     },
     jian(data) {
       this.$store.commit("rem", data);//调用store中的增加商品件数方法
@@ -166,11 +170,12 @@ export default {
     },
     jiesuan() {
       this.$router.push({
-        path: "/my"
+        path: "/login",
+        query:{bound:true}
       });
     }
   },
-  
+
   computed: {
     total() {
       //监听选中单个的商品
@@ -208,7 +213,11 @@ li {
   padding: 12px;
   border-bottom: 10px solid #f7f7f7;
 }
-#buy ul li img {
+#buy ul li img:nth-child(1){
+  width:17px;
+  height:17px
+}
+#buy ul li img:nth-child(2) {
   display: block;
   width: 97px;
   height: 90px;
@@ -322,7 +331,14 @@ li {
   margin-left: 8px;
 }
 #posa .zuo i {
+  display: inline-block;
   font-style: normal;
+  width:40px;
+  height:20px
+}
+#posa .zuo img{
+  width:17px;
+  height:17px
 }
 #posa a {
   display: block;

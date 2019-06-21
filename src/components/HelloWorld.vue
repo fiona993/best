@@ -8,21 +8,17 @@
 <script>
 import layfoot from '@/components/layout/layfoot'
 export default {
- 
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+     
     }
   },
   mounted(){
-   this.$eventHub.$on("sub",(val)=>{
-              //  console.log(val)
-      });
    this.$store.commit("vuexInit");
   },
   components:{
-    layfoot
+    layfoot,
   }
 }
 </script>
