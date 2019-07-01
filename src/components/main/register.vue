@@ -5,13 +5,13 @@
       <div id="top2">
         <i>上海</i>
         <b ></b>
-        <span @click="car"></span>
+        <span></span>
       </div>
       <div class="bottom">
         <p>用户注册</p>
         <div>请选择登录头像</div>
         <form>
-          <button v-fileUpload="setInputFile">本地上传图片</button>
+          <a href="#" v-fileUpload="setInputFile" >本地上传图片</a>
           <img :src="url" :style="{display:bool}">
           <br>请填写真名
           <input type="text" name="user" v-model="mingzi">
@@ -50,16 +50,6 @@ export default {
       this.url = url;
       this.bool = "block";
     },
-    main() {
-      this.$router.push({
-        path: "/main"
-      });
-    },
-    car() {
-      this.$router.push({
-        path: "/car"
-      });
-    },
     register() {
       var data = {
         username: this.user,
@@ -76,13 +66,14 @@ export default {
           cancelButtonText: "再看看"
         })
           .then(action => {
-            var data = {
+            var query = {
               username: this.user,
-              password: this.mima
+              password: this.mima,
+              bound:true
             };
             this.$router.push({
               path: "/login",
-              data
+              query
             });
           })
           .catch(err => {});
@@ -153,9 +144,22 @@ form input {
   color: #442818;
   font-weight: 600;
 }
+form a{
+  display: block;
+   width: 60%;
+  height: 42px;
+  background: #442818;
+  color: #fff;
+  margin: 20px auto;
+  font-size: 14px;
+  border: none;
+  line-height: 42px;
+  border-radius: 45%
+
+}
 form button {
   width: 100%;
-  height: 42px;
+  height: 50px;
   background: #442818;
   color: #fff;
   font-size: 14px;
@@ -164,6 +168,7 @@ form button {
 }
 form .btn {
   margin-bottom: 200px;
+  
 }
 a {
   text-decoration: none;

@@ -211,6 +211,7 @@ li {
   text-align: left;
   align-items: center;
   padding: 12px;
+  box-sizing :border-box;
   border-bottom: 10px solid #f7f7f7;
 }
 #buy ul li img:nth-child(1){
@@ -312,9 +313,7 @@ li {
   font-size: 12px;
   height: 50px;
   background: #fff;
-}
-#posa .you {
-  margin-left: 76px;
+  justify-content: space-between;
 }
 #posa .you p {
   margin-right: 10px;
@@ -326,19 +325,23 @@ li {
   font-weight: 600;
 }
 #posa .zuo {
+  height:100%;
   line-height: 50px;
   height: 50px;
   margin-left: 8px;
+  position: relative;
 }
 #posa .zuo i {
   display: inline-block;
   font-style: normal;
-  width:40px;
-  height:20px
+  width:60px;
+  padding-left:10px;
 }
 #posa .zuo img{
   width:17px;
-  height:17px
+  height:17px;
+  position: absolute;
+  top:34%;
 }
 #posa a {
   display: block;

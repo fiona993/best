@@ -99,7 +99,7 @@
         <i style="display:none">已优惠{{CurrentPrice}}</i>
       </div>
       <div class="two" @click="jiache">加入购物车</div>
-      <div class="three">立即购买</div>
+      <div class="three" @click="buy">立即购买</div>
     </div>
   </div>
 </template>
@@ -180,6 +180,12 @@ export default {
     },
     jia() {
       this.num++;
+    },
+    buy(){
+      this.$router.push({
+        path: "/login",
+        query:{bound:true}
+      });
     },
     jiache() {
       //点击加入购物车

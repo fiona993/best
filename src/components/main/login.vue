@@ -63,6 +63,10 @@ export default {
   methods: {
     pageInit() {
       this.bound = this.$route.query.bound;
+      if(this.$route.query.username){
+        this.loginName=this.$route.query.username;
+        this.password=this.$route.query.password
+      }
       if (Store.get("userInfo").length == 0) {
         this.bool = true;
         if (this.$route.data) {
@@ -114,7 +118,9 @@ export default {
             cancelButtonText: "再看看"
           })
             .then(action => {
-              this.beal = false;
+               this.$router.push({
+              path: "/register"
+      });
             })
             .catch(err => {});
         }

@@ -1,14 +1,7 @@
 <template>
   <div class="hello">
-    <!-- 刷新页面的弹框 -->
-    <mt-popup v-model="popupVisible" position="center">
-        <img class="tan"
-          @click="kai"
-          src="../../../static/618.jpg"
-          v-if="popupVisible"
-        >
      
-    </mt-popup>
+    
     <!-- 首页轮播 -->
     <div id="lunbo">
       <mt-swipe :auto="2000">
@@ -323,6 +316,10 @@ export default {
 </script>
 
 <style scoped>
+*{
+  margin: 0;
+  padding: 0;
+}
 li {
   list-style: none;
 }
@@ -370,12 +367,12 @@ li {
  
 }
 #box ul {
-  padding: 0 3vw 4vw;
+  padding: 15px 30px;
   width: 100vw;
   border-bottom: 2.6vw solid #fafafa;
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  /* margin: auto; */
 }
 #box img {
   display: block;

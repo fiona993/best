@@ -71,6 +71,7 @@
 <script>
 //引入弹出提示框
 import { MessageBox } from "mint-ui";
+import { Indicator } from "mint-ui";
 import "../../../static/libs/js/fly";
 import layhead from "@/components/layout/layhead";
 export default {
@@ -133,8 +134,17 @@ export default {
       };
       this.$store.commit("add", data);
       this.num = this.$store.state.shopCar.num;
+      // MessageBox({
+      //   title: "",
+      //   message: "加入购物车成功",
+      //   showConfirmButton: true
+      // });
     },
     pageInit() {
+      Indicator.open({
+        text: "加载中...",
+        spinnerType: "fading-circle"
+      });
       this.GetJdListNew(res => {
         var goodlist = res.data.Tag.cakelist;
         var url = "https://res.bestcake.com/m-images/ww/";
@@ -151,11 +161,12 @@ export default {
         });
         this.goodlist = goodlist;
         this.option(0);
+        Indicator.close();
       });
     },
     option(index) {
       this.tab = index;
-      var syno=this.list[index]?this.list[index].mark:"RP";
+      var syno = this.list[index] ? this.list[index].mark : "RP";
       var activelist = [];
       this.goodlist.forEach(item => {
         if (item.SupplyNo.indexOf(syno) != -1) {
@@ -163,11 +174,9 @@ export default {
         }
       });
       this.activelist = activelist;
-      if (index!=4) {
+      if (index != 4) {
         this.tem = index;
       }
-      
-     
     },
     show1() {
       this.active = 1;
@@ -255,6 +264,7 @@ li {
   display: flex;
   margin-top: 24px;
   position: relative;
+  margin: auto;
 }
 #nav a {
   margin-right: 30px;
